@@ -3,9 +3,6 @@ languageCode = "en-us"
 title = "$2 philosophy, done quickly"
 theme = "anatole"
 
-githubName = "goshlanguage"
-linkedinName = "ryan-hartje"
-
 [menu]
 
   [[menu.main]]
