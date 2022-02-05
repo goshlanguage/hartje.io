@@ -1,4 +1,4 @@
-baseURL = "https://goshlanguage.github.io/hartje.io"
+baseURL = "https://hartje.io/"
 languageCode = "en-us"
 title = "$2 philosophy, done quickly"
 theme = "anatole"
