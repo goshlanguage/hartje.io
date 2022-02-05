@@ -1,0 +1,29 @@
+baseURL = "https://goshlanguage.github.io/hartje.io"
+languageCode = "en-us"
+title = "$2 philosophy, done quickly"
+theme = "anatole"
+
+githubName = "goshlanguage"
+linkedinName = "ryan-hartje"
+
+[menu]
+
+  [[menu.main]]
+  name = "Posts"
+  weight = 200
+  identifier = "posts"
+  url = "/post/"
+
+  [[menu.main]]
+  name = "About"
+  weight = 300
+  identifier = "about"
+  url = "/about/"
+
+
+[params]
+title = "Ryan Hartje"
+author = "Hartje.io"
+description = "Sup nerds"
+profilePicture = "https://avatars.githubusercontent.com/u/4894582?s=400&u=286516b8a67801c3f216c6e6ee093c0ebb22113b&v=4"
+
