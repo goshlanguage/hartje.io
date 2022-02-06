@@ -1,7 +1,7 @@
 ---
 title: "Hugo"
 date: 2022-02-05T11:02:13-06:00
-Description: ""
+Description: "How to setup and manage hugo on github pages"
 Tags: []
 Categories: []
 DisableComments: false
