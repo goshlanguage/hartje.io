@@ -1,0 +1,22 @@
+baseURL: 'https://hartje.io/'
+languageCode: en-us
+title: hartje.io
+theme: venture
+
+disqusShortname: hartje-dot-io
+
+#
+menu:
+  main:
+    - name: Posts
+      weight: 200
+      identifier: posts
+      url: /post/
+    - name: About
+      weight: 300
+      identifier: about
+      url: /about/
+
+
+params:
+  pfp: images/avatar.jpeg

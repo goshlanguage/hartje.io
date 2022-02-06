@@ -4,6 +4,21 @@ date: 2022-02-05T10:19:26-06:00
 draft: false
 ---
 
-Hey, I'm Ryan. I like running, biking, and spending time with family, friends, or just lounging with my wife and weiner dog (probably with an open laptop).
+![it me](https://avatars.githubusercontent.com/u/4894582?v=4)
 
-![me and the dog](/me.jpg)
+```yaml
+apiVersion: human/v1
+kind: Nerd
+metadata:
+  name: Ryan Hartje
+  namespace: Austin, TX
+  labels:
+    pronouns: "he/him"
+    occupation: "software engineer"
+    hobbies: "running, biking, horsing around"
+spec:
+  social:
+    github: https://github.com/goshlanuage
+    linkedin: https://www.linkedin.com/in/ryan-hartje/
+    twitter: https://twitter.com/xoxodeadbeef
+```
