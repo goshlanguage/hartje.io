@@ -1,133 +1,154 @@
-<!doctype html><html dir=ltr lang=en data-theme><head>
-<title>
-Hartje.io
-|
-Hugo
-</title>
-<meta charset=utf-8><meta name=generator content="Hugo 0.92.1"><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name=description content="
-      Sup nerds
-
-
-    ">
-<link rel=stylesheet href=/css/main.min.24f9f28bfaca2cdc5a222bb5e42d30c701d7ffb0b31d30dfc4afc0e044dfbf24.css integrity="sha256-JPnyi/rKLNxaIiu15C0wxwHX/7CzHTDfxK/A4ETfvyQ=" crossorigin=anonymous type=text/css>
-<link rel=stylesheet href=/css/markupHighlight.min.058b31f17db60602cc415fd63b0427e7932fbf35c70d8e341a4c39385f5f6f3e.css integrity="sha256-BYsx8X22BgLMQV/WOwQn55MvvzXHDY40Gkw5OF9fbz4=" crossorigin=anonymous type=text/css>
-<link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin=anonymous>
-<link rel="shortcut icon" href=/favicon.ico type=image/x-icon>
-<link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png>
-<link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png>
-<link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png>
-<link rel=canonical href=https://hartje.io/post/hugo/>
-<script type=text/javascript src=/js/anatole-header.min.2a2cd9614b7d007dfbb75e8da19e3a0fa872ceab53c6d000c00b7a0c89b85bfc.js integrity="sha256-KizZYUt9AH37t16NoZ46D6hyzqtTxtAAwAt6DIm4W/w=" crossorigin=anonymous></script>
-<script type=text/javascript src=/js/anatole-theme-switcher.min.7fd87181cdd7e8413aa64b6867bb32f3a8dc242e684fc7d5bbb9f600dbc2b6eb.js integrity="sha256-f9hxgc3X6EE6pktoZ7sy86jcJC5oT8fVu7n2ANvCtus=" crossorigin=anonymous></script>
-<meta name=twitter:card content="summary">
-<meta name=twitter:title content="Hugo">
-<meta name=twitter:description content="This site is powered by hugo. I personally love the simplicity of writing markdown and having something else transpile it into HTML that doesn&rsquo;t look horrible. There are a lot of tools in this space, such as the popular Sphinx and Mkdocs of python fame, and Jekyll (and Hugo) of Go.
-I chose hugo specifically only because there is already extensive documentation of how to setup a simple hugo site on github pages.">
-<script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","articleSection":"post","name":"Hugo","headline":"Hugo","alternativeHeadline":"","description":"
-      
-        This site is powered by hugo. I personally love the simplicity of writing markdown and having something else transpile it into HTML that doesn\u0026rsquo;t look horrible. There are a lot of tools in this space, such as the popular Sphinx and Mkdocs of python fame, and Jekyll (and Hugo) of Go.\nI chose hugo specifically only because there is already extensive documentation of how to setup a simple hugo site on github pages.
-
-
-      
-
-
-    ","inLanguage":"en-us","isFamilyFriendly":"true","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/hartje.io\/post\/hugo\/"},"author":{"@type":"Person","name":"Hartje.io"},"creator":{"@type":"Person","name":"Hartje.io"},"accountablePerson":{"@type":"Person","name":"Hartje.io"},"copyrightHolder":{"@type":"Person","name":"Hartje.io"},"copyrightYear":"2022","dateCreated":"2022-02-05T11:02:13.00Z","datePublished":"2022-02-05T11:02:13.00Z","dateModified":"2022-02-05T11:02:13.00Z","publisher":{"@type":"Organization","name":"Hartje.io","url":"https://hartje.io/","logo":{"@type":"ImageObject","url":"https:\/\/hartje.io\/favicon-32x32.png","width":"32","height":"32"}},"image":[],"url":"https:\/\/hartje.io\/post\/hugo\/","wordCount":"109","genre":[],"keywords":[]}</script>
-</head>
+<!doctype html><html lang=en>
+<head>
+<meta charset=utf-8>
+<meta http-equiv=x-ua-compatible content="IE=edge">
+<meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no">
+<meta name=robots content="index, follow">
+<title>Hugo - hartje.io</title>
+<link rel=preconnect href=https://fonts.gstatic.com>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@900&family=IBM+Plex+Mono&family=Source+Sans+Pro&display=swap" rel=stylesheet>
+<link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w==" crossorigin=anonymous referrerpolicy=no-referrer>
+<link rel=stylesheet href=https://hartje.io/main.min.ca27cd1beef57d3c8cca0d7cf368ad9a6b5faf27595692f5a9411cf96a1392ca.css>
+<link rel=stylesheet href=/css/custom.css>
+<head>
 <body>
-<header><div class="page-top
-animated fadeInDown">
-<a role=button class=navbar-burger data-target=navMenu aria-label=menu aria-expanded=false>
-<span aria-hidden=true></span>
-<span aria-hidden=true></span>
-<span aria-hidden=true></span>
-</a>
-<nav>
-<ul class=nav__list id=navMenu>
-<div class=nav__links>
-<li>
-<a href=/post/ title>Posts</a>
-</li>
-<li>
-<a href=/about/ title>About</a>
-</li>
-</div>
-<ul>
-<li>
-<a class=theme-switch title="Switch Theme">
-<i class="fas fa-adjust fa-fw" aria-hidden=true></i>
-</a>
-</li>
-</ul>
-</ul>
-</nav>
-</div>
-</header>
-<div class=wrapper>
-<aside><div class="sidebar
-animated fadeInDown">
-<div class=sidebar__content>
-<div class=logo-title>
-<div class=title>
-<img src="https://avatars.githubusercontent.com/u/4894582?s=400&u=286516b8a67801c3f216c6e6ee093c0ebb22113b&v=4" alt="profile picture">
-<h3 title><a href=/>Ryan Hartje</a></h3>
-<div class=description>
-<p>Sup nerds</p>
-</div>
-</div>
-</div>
-<ul class=social-links>
-</ul>
-</div><footer class="footer footer--sidebar">
-<div class=by_farbox>
-<ul class=footer__list>
-<li class=footer__item>
-&copy;
-Hartje.io
-2022
-</li>
-</ul>
-</div>
-</footer>
-<script type=text/javascript src=/js/medium-zoom.min.71100d84fab0ad794b8399a66ac810700cc78d703f715dc10af4d7ba7b761362.js integrity="sha256-cRANhPqwrXlLg5mmasgQcAzHjXA/cV3BCvTXunt2E2I=" crossorigin=anonymous></script></div>
-</aside>
-<main>
-<div class=autopagerize_page_element>
+<header>
 <div class=content>
-<div class="post
-animated fadeInDown">
-<div class=post-content>
-<div class=post-title>
+<div class=left>
+<a href=https://hartje.io/><h1>hartje.io</h1></a>
+</div>
+<div class=right>
+<div class=links>
+<a href=/post/><span>Posts</span></a>
+<a href=/about/><span>About</span></a>
+</div>
+<a href=https://hartje.io/><img class=pfp src=https://hartje.io/images/avatar.jpeg></img></a>
+</div>
+</div>
+<hr>
+</header>
+<main>
+<article>
+<time datetime="2022-02-05 11:02:13 -0600 -0600">Feb 5, 2022</time>
 <h1>Hugo</h1>
-<div class=info>
-<em class="fas fa-calendar-day"></em>
-<span class=date>
-Sat, Feb 5, 2022
-</span>
-<em class="fas fa-stopwatch"></em>
-<span class=reading-time>One-minute read</span>
-</div>
-</div><p>This site is powered by hugo. I personally love the simplicity of writing markdown and having something else transpile it into HTML that doesn&rsquo;t look horrible. There are a lot of tools in this space, such as the popular <code>Sphinx</code> and <code>Mkdocs</code> of python fame, and <code>Jekyll</code> (and <code>Hugo</code>) of Go.</p>
-<p>I chose <code>hugo</code> specifically only because there is already extensive documentation of how to setup a simple hugo site on github pages. If you&rsquo;re not familiar, Github will host your files in a webserver so you can either use their free DNS (*.github.io), or use your own. If you want to learn more, see the <a href=https://docs.github.com/en/pages/getting-started-with-github-pages/creating-a-github-pages-site>Github Pages docs</a>.</p>
-</div>
-<div class=post-footer>
-<div class=info>
-</div>
-</div>
-</div>
-</div>
-</div>
-</main>
-</div><footer class="footer footer--base">
-<div class=by_farbox>
-<ul class=footer__list>
-<li class=footer__item>
-&copy;
-Hartje.io
-2022
-</li>
+<section class=body>
+<p>This site is powered by <code>hugo</code>. I love the simplicity of writing markdown, pushing it to <a href=https://github.com/goshlanguage/hartje.io/>this repo</a>, and having that transpiled into HTML through a github action. There are a lot of tools in this space, such as the popular <code>Sphinx</code>, <code>Mkdocs</code>, and <code>Jekyll</code>.</p>
+<p>I chose <code>hugo</code> specifically for how little setup was needed for a self publishing repo to manage my site on Github Pages. Using this service, the project&rsquo;s url becomes <code>&lt;YOUR USERNAME>.github.io</code>, or <code>&lt;YOUR USERNAME>.github.io/&lt;YOUR PROJECT>/</code>, and supports custom domains.</p>
+<p>For more information, see:</p>
+<ul>
+<li><a href=https://gohugo.io/hosting-and-deployment/hosting-on-github/>setup hugo on github pages</a></li>
+<li><a href=https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site#configuring-an-apex-domain>configure a custom domain</a></li>
+<li><a href=https://docs.github.com/en/pages/getting-started-with-github-pages/creating-a-github-pages-site>getting started with github pages</a></li>
 </ul>
+<p>To get started, create the repo, and <code>brew install hugo</code> if it&rsquo;s not already available.</p>
+<blockquote>
+<p>NOTE: name this repo <code>&lt;YOUR USERNAME>.github.io</code> for your personal username repo, otherwise if you&rsquo;re bringing your own repo, you can use whatever name you want</p>
+</blockquote>
+<h2 id=initializing-the-project>Initializing the project</h2>
+<p>Hugo will scaffold out your site for:</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>hugo new site hartje.io
+cd hartje.io
+</code></pre></div><p>Next, <a href=https://themes.gohugo.io/>find a theme</a> you like, then click the <code>Download</code> button find it&rsquo;s git repo. You now need to add it as a git <code>submodule</code>, and then <code>init</code> the submodule so it&rsquo;s tracked in your source code. That might practically look like this:</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>git submodule add https://github.com/Wtoll/venture.git themes/venture --depth<span style=color:#f92672>=</span><span style=color:#ae81ff>1</span>
+git submodule update --init --recursive <span style=color:#75715e># needed when you reclone your repo (submodules may not get cloned automatically)</span>
+</code></pre></div><h3 id=configuring-hugo>Configuring Hugo</h3>
+<p>Hugo has a lot of configuration options. You can configure hugo by creating a <code>./config.toml</code> file, or even in whichever format you prefer out of <code>yaml</code>, <code>toml</code>, and <code>json</code>.</p>
+<h3 id=setup-github-pages-in-your-repo-settings>Setup Github Pages in your repo settings</h3>
+<blockquote>
+<p>By default, the GitHub action pushes the generated content to the <code>gh-pages</code> branch. This means GitHub has to serve your <code>gh-pages</code> branch as a GitHub Pages branch. You can change this setting by going to <code>Settings > GitHub Pages</code>, and change the source branch to <code>gh-pages</code>.</p>
+</blockquote>
+<p>Source: <a href=https://gohugo.io/hosting-and-deployment/hosting-on-github/>Hugo - Hosting on Github</a></p>
+<h3 id=custom-domains>Custom Domains</h3>
+<p>If you&rsquo;re bringing your own DNS, be sure to add your domain to <code>/static/CNAME</code>, as a requirement for <code>Github Pages</code>.</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>echo <span style=color:#e6db74>&#34;hartje.io&#34;</span> &gt; static/CNAME
+</code></pre></div><p><code>/static/CNAME</code>:</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-text data-lang=text>hartje.io
+</code></pre></div><h3 id=create-a-post>Create a post</h3>
+<p><code>hugo</code> also has a scaffold for posts. To create a new post run:</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>hugo new mypost.md
+<span style=color:#75715e># or alternatively, you can nest your posts in directories</span>
+<span style=color:#75715e># hugo new mydir/mypost.md</span>
+</code></pre></div><p>The created markdown files will be in the <code>content/</code> folder.</p>
+<h2 id=automatically-publish-changes-to-github-pages>Automatically publish changes to Github Pages</h2>
+<p>We can make quick work of an automated deployment for our site, by adopting this simple github workflow. Add this <code>.github/workflows/gh-pages.yaml</code> and push your branch to set it up.</p>
+<p><code>/.github/workflows/gh-pages.yaml</code>:</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yaml data-lang=yaml><span style=color:#f92672>name</span>: <span style=color:#ae81ff>github pages</span>
+
+<span style=color:#f92672>on</span>:
+  <span style=color:#f92672>push</span>:
+    <span style=color:#f92672>branches</span>:
+      - <span style=color:#ae81ff>main </span> <span style=color:#75715e># Set a branch to deploy</span>
+  <span style=color:#f92672>pull_request</span>:
+
+<span style=color:#f92672>jobs</span>:
+  <span style=color:#f92672>deploy</span>:
+    <span style=color:#f92672>runs-on</span>: <span style=color:#ae81ff>ubuntu-20.04</span>
+    <span style=color:#f92672>steps</span>:
+      - <span style=color:#f92672>uses</span>: <span style=color:#ae81ff>actions/checkout@v2</span>
+        <span style=color:#f92672>with</span>:
+          <span style=color:#f92672>submodules</span>: <span style=color:#66d9ef>true</span>  <span style=color:#75715e># Fetch Hugo themes (true OR recursive)</span>
+          <span style=color:#f92672>fetch-depth</span>: <span style=color:#ae81ff>0</span>    <span style=color:#75715e># Fetch all history for .GitInfo and .Lastmod</span>
+
+      - <span style=color:#f92672>name</span>: <span style=color:#ae81ff>Setup Hugo</span>
+        <span style=color:#f92672>uses</span>: <span style=color:#ae81ff>peaceiris/actions-hugo@v2</span>
+        <span style=color:#f92672>with</span>:
+          <span style=color:#f92672>hugo-version</span>: <span style=color:#e6db74>&#39;latest&#39;</span>
+          <span style=color:#75715e># extended: true</span>
+
+      - <span style=color:#f92672>name</span>: <span style=color:#ae81ff>Build</span>
+        <span style=color:#f92672>run</span>: <span style=color:#ae81ff>hugo --minify</span>
+
+      - <span style=color:#f92672>name</span>: <span style=color:#ae81ff>Deploy</span>
+        <span style=color:#f92672>uses</span>: <span style=color:#ae81ff>peaceiris/actions-gh-pages@v3</span>
+        <span style=color:#f92672>if</span>: <span style=color:#ae81ff>github.ref == &#39;refs/heads/main&#39;</span>
+        <span style=color:#f92672>with</span>:
+          <span style=color:#f92672>github_token</span>: <span style=color:#ae81ff>${{ secrets.GITHUB_TOKEN }}</span>
+          <span style=color:#f92672>publish_dir</span>: <span style=color:#ae81ff>./public</span>
+</code></pre></div><h2 id=customizing-hugo>Customizing Hugo</h2>
+<p>First, here is a wonderful tutorial for <a href=https://www.banjocode.com/post/hugo/custom-css/>adding custom css or javascript to your hugo site</a> from <code>banjocode</code>.</p>
+<p>If you&rsquo;d like to customize your <code>hugo</code> site layout, then first take a look at the structure of our theme:</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>tree themes/venture
+themes/venture
+├── LICENSE
+├── README.md
+├── archetypes
+│   └── default.md
+├── assets
+│   └── sass
+│       └── main.sass
+├── images
+│   ├── screenshot.png
+│   └── tn.png
+├── layouts
+│   ├── 404.html
+│   ├── _default
+│   │   ├── baseof.html
+│   │   ├── list.html
+│   │   └── single.html
+│   ├── about
+│   │   └── list.html
+│   ├── index.html
+│   └── partials
+│       ├── footer.html
+│       ├── head.html
+│       └── header.html
+├── static
+│   └── images
+│       └── blank.png
+└── theme.toml
+</code></pre></div><p>You might recognize that the theme repo&rsquo;s structure matches the one scaffolded by <code>hugo</code>. <code>hugo</code> will prefer a root level file, should the theme have a conflicting file, so we can explore what all we can change and experiment by copying to the root level and modifying it.</p>
+<p>For instance, if we wanted to update the <code>layouts/partials/footer.html</code>, we&rsquo;d want to first copy the theme&rsquo;s into our root level <code>layouts/partials</code>, then modify the file in <code>/layouts/partials/footer.html</code>.</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>mkdir -p layouts/partials
+cp themes/venture/layouts/partials/footer.html layouts/partials/footer.html
+</code></pre></div>
+</section>
+<div class=tags>
 </div>
+<div class=next-and-prev>
+</div>
+</article>
+</main>
+<footer>
 </footer>
-<script type=text/javascript src=/js/medium-zoom.min.71100d84fab0ad794b8399a66ac810700cc78d703f715dc10af4d7ba7b761362.js integrity="sha256-cRANhPqwrXlLg5mmasgQcAzHjXA/cV3BCvTXunt2E2I=" crossorigin=anonymous></script></body>
+</body>
 </html>
