@@ -1,181 +1,123 @@
-<!doctype html><html lang=en>
-<head>
-<meta name=generator content="Hugo 0.92.1">
-<meta charset=utf-8>
-<meta http-equiv=x-ua-compatible content="IE=edge">
-<meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no">
-<meta name=robots content="index, follow">
-<title>hartje.io</title>
-<link rel=preconnect href=https://fonts.gstatic.com>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@900&family=IBM+Plex+Mono&family=Source+Sans+Pro&display=swap" rel=stylesheet>
-<link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w==" crossorigin=anonymous referrerpolicy=no-referrer>
-<link rel=stylesheet href=https://hartje.io/main.min.ca27cd1beef57d3c8cca0d7cf368ad9a6b5faf27595692f5a9411cf96a1392ca.css>
-<link rel=stylesheet href=/css/custom.css>
-<head>
-<body>
-<header>
-<div class=content>
-<div class=left>
-<a href=https://hartje.io/><h1>hartje.io</h1></a>
-</div>
-<div class=right>
-<div class=links>
-<a href=/post/><span>Posts</span></a>
-<a href=/about/><span>About</span></a>
-</div>
-<a href=https://hartje.io/><img class=pfp src=https://hartje.io/images/avatar.jpeg></img></a>
-</div>
-</div>
-<hr>
-</header>
-<main>
-<article>
-<time datetime="2022-02-05 11:02:13 -0600 -0600">Feb 5, 2022</time>
-<h1><a href=https://hartje.io/post/hugo/>Hugo</a></h1>
-<section class=body>
-<p>This site is powered by <code>hugo</code>. I love the simplicity of writing markdown, pushing it to <a href=https://github.com/goshlanguage/hartje.io/>this repo</a>, and having that transpiled into HTML through a github action. There are a lot of tools in this space, such as the popular <code>Sphinx</code>, <code>Mkdocs</code>, and <code>Jekyll</code>.</p>
-<p>I chose <code>hugo</code> specifically for how little setup was needed for a self publishing repo to manage my site on Github Pages. Using this service, the project&rsquo;s url becomes <code>&lt;YOUR USERNAME>.github.io</code>, or <code>&lt;YOUR USERNAME>.github.io/&lt;YOUR PROJECT>/</code>, and supports custom domains.</p>
-<p>For more information, see:</p>
-<ul>
-<li><a href=https://gohugo.io/hosting-and-deployment/hosting-on-github/>setup hugo on github pages</a></li>
-<li><a href=https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site#configuring-an-apex-domain>configure a custom domain</a></li>
-<li><a href=https://docs.github.com/en/pages/getting-started-with-github-pages/creating-a-github-pages-site>getting started with github pages</a></li>
-</ul>
-<p>To get started, create the repo, and <code>brew install hugo</code> if it&rsquo;s not already available.</p>
-<blockquote>
-<p>NOTE: name this repo <code>&lt;YOUR USERNAME>.github.io</code> for your personal username repo, otherwise if you&rsquo;re bringing your own repo, you can use whatever name you want</p>
-</blockquote>
-<h2 id=initializing-the-project>Initializing the project</h2>
-<p>Hugo will scaffold out your site for:</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>hugo new site hartje.io
-cd hartje.io
-</code></pre></div><p>Next, <a href=https://themes.gohugo.io/>find a theme</a> you like, then click the <code>Download</code> button find it&rsquo;s git repo. You now need to add it as a git <code>submodule</code>, and then <code>init</code> the submodule so it&rsquo;s tracked in your source code. That might practically look like this:</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>git submodule add https://github.com/Wtoll/venture.git themes/venture --depth<span style=color:#f92672>=</span><span style=color:#ae81ff>1</span>
-git submodule update --init --recursive <span style=color:#75715e># needed when you reclone your repo (submodules may not get cloned automatically)</span>
-</code></pre></div><h3 id=configuring-hugo>Configuring Hugo</h3>
-<p>Hugo has a lot of configuration options. You can configure hugo by creating a <code>./config.toml</code> file, or even in whichever format you prefer out of <code>yaml</code>, <code>toml</code>, and <code>json</code>.</p>
-<h3 id=setup-github-pages-in-your-repo-settings>Setup Github Pages in your repo settings</h3>
-<blockquote>
-<p>By default, the GitHub action pushes the generated content to the <code>gh-pages</code> branch. This means GitHub has to serve your <code>gh-pages</code> branch as a GitHub Pages branch. You can change this setting by going to <code>Settings > GitHub Pages</code>, and change the source branch to <code>gh-pages</code>.</p>
-</blockquote>
-<p>Source: <a href=https://gohugo.io/hosting-and-deployment/hosting-on-github/>Hugo - Hosting on Github</a></p>
-<h3 id=custom-domains>Custom Domains</h3>
-<p>If you&rsquo;re bringing your own DNS, be sure to add your domain to <code>/static/CNAME</code>, as a requirement for <code>Github Pages</code>.</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>echo <span style=color:#e6db74>&#34;hartje.io&#34;</span> &gt; static/CNAME
-</code></pre></div><p><code>/static/CNAME</code>:</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-text data-lang=text>hartje.io
-</code></pre></div><h3 id=create-a-post>Create a post</h3>
-<p><code>hugo</code> also has a scaffold for posts. To create a new post run:</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>hugo new mypost.md
-<span style=color:#75715e># or alternatively, you can nest your posts in directories</span>
-<span style=color:#75715e># hugo new mydir/mypost.md</span>
-</code></pre></div><p>The created markdown files will be in the <code>content/</code> folder.</p>
-<h2 id=automatically-publish-changes-to-github-pages>Automatically publish changes to Github Pages</h2>
-<p>We can make quick work of an automated deployment for our site, by adopting this simple github workflow. Add this <code>.github/workflows/gh-pages.yaml</code> and push your branch to set it up.</p>
-<p><code>/.github/workflows/gh-pages.yaml</code>:</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yaml data-lang=yaml><span style=color:#f92672>name</span>: <span style=color:#ae81ff>github pages</span>
-
-<span style=color:#f92672>on</span>:
-  <span style=color:#f92672>push</span>:
-    <span style=color:#f92672>branches</span>:
-      - <span style=color:#ae81ff>main </span> <span style=color:#75715e># Set a branch to deploy</span>
-  <span style=color:#f92672>pull_request</span>:
-
-<span style=color:#f92672>jobs</span>:
-  <span style=color:#f92672>deploy</span>:
-    <span style=color:#f92672>runs-on</span>: <span style=color:#ae81ff>ubuntu-20.04</span>
-    <span style=color:#f92672>steps</span>:
-      - <span style=color:#f92672>uses</span>: <span style=color:#ae81ff>actions/checkout@v2</span>
-        <span style=color:#f92672>with</span>:
-          <span style=color:#f92672>submodules</span>: <span style=color:#66d9ef>true</span>  <span style=color:#75715e># Fetch Hugo themes (true OR recursive)</span>
-          <span style=color:#f92672>fetch-depth</span>: <span style=color:#ae81ff>0</span>    <span style=color:#75715e># Fetch all history for .GitInfo and .Lastmod</span>
-
-      - <span style=color:#f92672>name</span>: <span style=color:#ae81ff>Setup Hugo</span>
-        <span style=color:#f92672>uses</span>: <span style=color:#ae81ff>peaceiris/actions-hugo@v2</span>
-        <span style=color:#f92672>with</span>:
-          <span style=color:#f92672>hugo-version</span>: <span style=color:#e6db74>&#39;latest&#39;</span>
-          <span style=color:#75715e># extended: true</span>
-
-      - <span style=color:#f92672>name</span>: <span style=color:#ae81ff>Build</span>
-        <span style=color:#f92672>run</span>: <span style=color:#ae81ff>hugo --minify</span>
-
-      - <span style=color:#f92672>name</span>: <span style=color:#ae81ff>Deploy</span>
-        <span style=color:#f92672>uses</span>: <span style=color:#ae81ff>peaceiris/actions-gh-pages@v3</span>
-        <span style=color:#f92672>if</span>: <span style=color:#ae81ff>github.ref == &#39;refs/heads/main&#39;</span>
-        <span style=color:#f92672>with</span>:
-          <span style=color:#f92672>github_token</span>: <span style=color:#ae81ff>${{ secrets.GITHUB_TOKEN }}</span>
-          <span style=color:#f92672>publish_dir</span>: <span style=color:#ae81ff>./public</span>
-</code></pre></div><h2 id=customizing-hugo>Customizing Hugo</h2>
-<p>First, here is a wonderful tutorial for <a href=https://www.banjocode.com/post/hugo/custom-css/>adding custom css or javascript to your hugo site</a> from <code>banjocode</code>.</p>
-<p>If you&rsquo;d like to customize your <code>hugo</code> site layout, then first take a look at the structure of our theme:</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>tree themes/venture
-themes/venture
-├── LICENSE
-├── README.md
-├── archetypes
-│   └── default.md
-├── assets
-│   └── sass
-│       └── main.sass
-├── images
-│   ├── screenshot.png
-│   └── tn.png
-├── layouts
-│   ├── 404.html
-│   ├── _default
-│   │   ├── baseof.html
-│   │   ├── list.html
-│   │   └── single.html
-│   ├── about
-│   │   └── list.html
-│   ├── index.html
-│   └── partials
-│       ├── footer.html
-│       ├── head.html
-│       └── header.html
-├── static
-│   └── images
-│       └── blank.png
-└── theme.toml
-</code></pre></div><p>You might recognize that the theme repo&rsquo;s structure matches the one scaffolded by <code>hugo</code>. <code>hugo</code> will prefer a root level file, should the theme have a conflicting file, so we can explore what all we can change and experiment by copying to the root level and modifying it.</p>
-<p>For instance, if we wanted to update the <code>layouts/partials/footer.html</code>, we&rsquo;d want to first copy the theme&rsquo;s into our root level <code>layouts/partials</code>, then modify the file in <code>/layouts/partials/footer.html</code>.</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>mkdir -p layouts/partials
-cp themes/venture/layouts/partials/footer.html layouts/partials/footer.html
-</code></pre></div>
-</section>
-<div class=tags>
-</div>
-</article>
-<article>
-<time datetime="2022-02-05 10:19:26 -0600 -0600">Feb 5, 2022</time>
-<h1><a href=https://hartje.io/about/>About</a></h1>
-<section class=body>
-<p><img src="https://avatars.githubusercontent.com/u/4894582?v=4" alt="it me"></p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yaml data-lang=yaml><span style=color:#f92672>apiVersion</span>: <span style=color:#ae81ff>human/v1</span>
-<span style=color:#f92672>kind</span>: <span style=color:#ae81ff>Nerd</span>
-<span style=color:#f92672>metadata</span>:
-  <span style=color:#f92672>name</span>: <span style=color:#ae81ff>Ryan Hartje</span>
-  <span style=color:#f92672>namespace</span>: <span style=color:#ae81ff>Austin, TX</span>
-  <span style=color:#f92672>labels</span>:
-    <span style=color:#f92672>pronouns</span>: <span style=color:#e6db74>&#34;he/him&#34;</span>
-    <span style=color:#f92672>occupation</span>: <span style=color:#e6db74>&#34;software engineer&#34;</span>
-    <span style=color:#f92672>hobbies</span>: <span style=color:#e6db74>&#34;running, biking, horsing around&#34;</span>
-<span style=color:#f92672>spec</span>:
-  <span style=color:#f92672>social</span>:
-    <span style=color:#f92672>github</span>: <span style=color:#ae81ff>https://github.com/goshlanuage</span>
-    <span style=color:#f92672>linkedin</span>: <span style=color:#ae81ff>https://www.linkedin.com/in/ryan-hartje/</span>
-    <span style=color:#f92672>twitter</span>: <span style=color:#ae81ff>https://twitter.com/xoxodeadbeef</span>
-</code></pre></div>
-</section>
-<div class=tags>
-</div>
-</article>
-<div class=next-and-prev>
-</div>
-</main>
-<hr>
-<footer>
-</footer>
-<br>
-</body>
-</html>
+<!doctype html><html lang=en><head><meta name=generator content="Hugo 0.101.0"><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>hartje.io</title><link rel=preconnect href=https://fonts.gstatic.com><link href="https://fonts.googleapis.com/css2?family=Archivo:wght@900&family=IBM+Plex+Mono&family=Source+Sans+Pro&display=swap" rel=stylesheet><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w==" crossorigin=anonymous referrerpolicy=no-referrer><link rel=stylesheet href=https://hartje.io/main.min.ca27cd1beef57d3c8cca0d7cf368ad9a6b5faf27595692f5a9411cf96a1392ca.css><link rel=stylesheet href=/css/custom.css><head><body><header><div class=content><div class=left><a href=https://hartje.io/><h1>hartje.io</h1></a></div><div class=right><div class=links><a href=/post/><span>Posts</span></a>
+<a href=/about/><span>About</span></a></div><a href=https://hartje.io/><img class=pfp src=https://hartje.io/images/avatar.jpeg></img></a></div></div><hr></header><main><article><time datetime="2022-03-04 10:44:43 -0600 -0600">Mar 4, 2022</time><h1><a href=https://hartje.io/post/unix_sockets/>Sockets</a></h1><section class=body><h2 id=summary>Summary</h2><p>If you&rsquo;ve ever used <code>netstat</code>, or gone to a website on OSX or Linux (or Windows for that matter) without a background in C (or perhaps systems programming), you may have struggled to fully appreciate the content there in. Or maybe you are just curious to know how <code>sockets</code> work in *nix.</p><p><code>sockets</code> are a form of <code>IPC</code>, or inter process communication, allowing processes to bidirectionally share information with other processes. See other kinds of IPC in <a href=https://beej.us/guide/bgipc/html/multi/index.html>Beej&rsquo;s Guide to Unix IPC</a>.</p><p><code>sockets</code> are commonly referred to by their <em>Address Family</em>, seen in constants such as <code>AF_UNIX</code>, or <code>AF_LOCAL</code>, representing local sockets specifically. You might also want to know about <em>Protocol Family</em>, seen in constants such as <code>PF_UNIX</code> and <code>PF_LOCAL</code>.</p><p>Valid <code>socket</code> types that should be known are:</p><table><thead><tr><th>type</th><th>description</th></tr></thead><tbody><tr><td><code>SOCK_STREAM</code></td><td>A stream oriented packet used for TCP</td></tr><tr><td><code>SOCK_DGRAM</code></td><td>datagram oriented packet, no reordering, used for UDP</td></tr><tr><td><code>SOCK_RAW</code></td><td>Provides access to internal network protocols and interfaces. Only available to super-user</td></tr><tr><td><code>SOCK_SEQPACKET</code></td><td>A sequence-packet socket that is connection oriented, delivering messages in the order sent</td></tr></tbody></table><p>You can learn more about various types of valid <code>sockets</code> on the man page for the socket SystemCall:</p><p><a href=https://man7.org/linux/man-pages/man2/socket.2.html>https://man7.org/linux/man-pages/man2/socket.2.html</a></p><p>Now that we&rsquo;ve discussed what <code>sockets</code> are, and some of the well known constants that sockets use, let&rsquo;s look at the example in the man page.</p><h3 id=unix-socket-example>Unix Socket Example</h3><p>The given snippet in the man page is a bit terse, but practical:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c data-lang=c><span style=display:flex><span>       <span style=color:#75715e>#include</span> <span style=color:#75715e>&lt;sys/socket.h&gt;</span><span style=color:#75715e>
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>       <span style=color:#75715e>#include</span> <span style=color:#75715e>&lt;sys/un.h&gt;</span><span style=color:#75715e>
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span>       unix_socket <span style=color:#f92672>=</span> socket(AF_UNIX, type, <span style=color:#ae81ff>0</span>);
+</span></span><span style=display:flex><span>       error <span style=color:#f92672>=</span> socketpair(AF_UNIX, type, <span style=color:#ae81ff>0</span>, <span style=color:#66d9ef>int</span> <span style=color:#f92672>*</span>sv);
+</span></span></code></pre></div><p>In the example above, we import the definitions for socket and unix domain sockets, then construct a unix_socket, and assign error the exit code of calling <code>socketpair</code>.</p><p>It is helpful to consult the manual, let&rsquo;s take a look at the two syscall signatures from their respective man pages:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c data-lang=c><span style=display:flex><span><span style=color:#66d9ef>int</span> <span style=color:#a6e22e>socket</span>(<span style=color:#66d9ef>int</span> domain, <span style=color:#66d9ef>int</span> type, <span style=color:#66d9ef>int</span> protocol);
+</span></span><span style=display:flex><span><span style=color:#66d9ef>int</span> <span style=color:#a6e22e>socketpair</span>(<span style=color:#66d9ef>int</span> domain, <span style=color:#66d9ef>int</span> type, <span style=color:#66d9ef>int</span> protocol, <span style=color:#66d9ef>int</span> sv[<span style=color:#ae81ff>2</span>]);
+</span></span></code></pre></div><ul><li><a href=https://man7.org/linux/man-pages/man2/socket.2.html>socket</a></li><li><a href=https://man7.org/linux/man-pages/man2/socketpair.2.html>socketpair</a></li></ul><p>Using what we&rsquo;ve learned about valid types, we can construct a simple program that creates a socket, and prints its file descriptors or any relevant error:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c data-lang=c><span style=display:flex><span><span style=color:#75715e>#include</span> <span style=color:#75715e>&lt;stdio.h&gt;</span><span style=color:#75715e>
+</span></span></span><span style=display:flex><span><span style=color:#75715e>#include</span> <span style=color:#75715e>&lt;sys/socket.h&gt;</span><span style=color:#75715e>
+</span></span></span><span style=display:flex><span><span style=color:#75715e>#include</span> <span style=color:#75715e>&lt;sys/un.h&gt;</span><span style=color:#75715e>
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>int</span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>main</span>()
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>int</span> unix_socket, error;
+</span></span><span style=display:flex><span>    <span style=color:#75715e>// socket vector, sv, is a vector pointer to two file descriptors
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    <span style=color:#75715e>// representing new sockets for server and client bindings
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    <span style=color:#66d9ef>int</span> <span style=color:#f92672>*</span>sv[<span style=color:#ae81ff>2</span>];
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    unix_socket <span style=color:#f92672>=</span> socket(AF_UNIX, SOCK_DGRAM, <span style=color:#ae81ff>0</span>);
+</span></span><span style=display:flex><span>    <span style=color:#75715e>// socketpair below is constructed for the OSX variant. The linux variant has a different signature, instead use:
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    <span style=color:#75715e>// error = socketpair(AF_UNIX, 0, *sv)
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    error <span style=color:#f92672>=</span> socketpair(AF_UNIX, SOCK_DGRAM, <span style=color:#ae81ff>0</span>, <span style=color:#f92672>*</span>sv);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>if</span> (error <span style=color:#f92672>!=</span> <span style=color:#ae81ff>0</span>)
+</span></span><span style=display:flex><span>    {
+</span></span><span style=display:flex><span>      printf(<span style=color:#e6db74>&#34;Encountered error: %d</span><span style=color:#ae81ff>\n</span><span style=color:#e6db74>&#34;</span>, error);
+</span></span><span style=display:flex><span>      <span style=color:#66d9ef>return</span> error;
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    printf(<span style=color:#e6db74>&#34;Socket descriptor: %d</span><span style=color:#ae81ff>\n</span><span style=color:#e6db74>&#34;</span>, unix_socket);
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><p>Compiling and running our example can be done by running:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh><span style=display:flex><span>clang -o socket ./socket.c; ./socket
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>Socket descriptor: <span style=color:#ae81ff>3</span>
+</span></span></code></pre></div><p>Ok, so we created a socket, and it returned a descriptor, <code>3</code>. What does that mean?</p><p>You are likely familiar with file descriptors 0, 1, 2 if you&rsquo;ve ever redirected output. They are <code>stdin</code>, <code>stdout</code>, and <code>stderr</code>.</p><h2 id=references>References</h2><ol><li><a href=https://beej.us/guide/bgipc/html/multi/index.html>Beej&rsquo;s Guide to Unix IPC</a></li><li><a href=https://man7.org/linux/man-pages/man7/unix.7.html>unix-7 man page</a></li><li><a href=https://man7.org/linux/man-pages/man2/socket.2.html>socket-2 man page</a></li><li><a href=https://en.wikipedia.org/wiki/Unix_domain_socket>unix domain socket wikipedia</a></li><li><a href=https://serverfault.com/questions/124517/what-is-the-difference-between-unix-sockets-and-tcp-ip-sockets>What&rsquo;s the difference between Unix sockets and TCP/IP sockets</a></li><li><a href="https://en.wikipedia.org/wiki/File_descriptor#:~:text=On%20Linux%2C%20the%20set%20of,%2Ffd%2F2%20is%20stderr%20.">File Descriptors</a></li></ol></section><div class=tags><li><a href=https://hartje.io/tags/c>#C</a></li><li><a href=https://hartje.io/tags/unix>#Unix</a></li></div></article><article><time datetime="2022-02-05 11:02:13 -0600 -0600">Feb 5, 2022</time><h1><a href=https://hartje.io/post/hugo/>Hugo</a></h1><section class=body><p>This site is powered by <code>hugo</code>. I love the simplicity of writing markdown, pushing it to <a href=https://github.com/goshlanguage/hartje.io/>this repo</a>, and having that transpiled into HTML through a github action. There are a lot of tools in this space, such as the popular <code>Sphinx</code>, <code>Mkdocs</code>, and <code>Jekyll</code>.</p><p>I chose <code>hugo</code> specifically for how little setup was needed for a self publishing repo to manage my site on Github Pages. Using this service, the project&rsquo;s url becomes <code>&lt;YOUR USERNAME>.github.io</code>, or <code>&lt;YOUR USERNAME>.github.io/&lt;YOUR PROJECT>/</code>, and supports custom domains.</p><p>For more information, see:</p><ul><li><a href=https://gohugo.io/hosting-and-deployment/hosting-on-github/>setup hugo on github pages</a></li><li><a href=https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site#configuring-an-apex-domain>configure a custom domain</a></li><li><a href=https://docs.github.com/en/pages/getting-started-with-github-pages/creating-a-github-pages-site>getting started with github pages</a></li></ul><p>To get started, create the repo, and <code>brew install hugo</code> if it&rsquo;s not already available.</p><blockquote><p>NOTE: name this repo <code>&lt;YOUR USERNAME>.github.io</code> for your personal username repo, otherwise if you&rsquo;re bringing your own repo, you can use whatever name you want</p></blockquote><h2 id=initializing-the-project>Initializing the project</h2><p>Hugo will scaffold out your site for:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh><span style=display:flex><span>hugo new site hartje.io
+</span></span><span style=display:flex><span>cd hartje.io
+</span></span></code></pre></div><p>Next, <a href=https://themes.gohugo.io/>find a theme</a> you like, then click the <code>Download</code> button find it&rsquo;s git repo. You now need to add it as a git <code>submodule</code>, and then <code>init</code> the submodule so it&rsquo;s tracked in your source code. That might practically look like this:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh><span style=display:flex><span>git submodule add https://github.com/Wtoll/venture.git themes/venture --depth<span style=color:#f92672>=</span><span style=color:#ae81ff>1</span>
+</span></span><span style=display:flex><span>git submodule update --init --recursive <span style=color:#75715e># needed when you reclone your repo (submodules may not get cloned automatically)</span>
+</span></span></code></pre></div><h3 id=configuring-hugo>Configuring Hugo</h3><p>Hugo has a lot of configuration options. You can configure hugo by creating a <code>./config.toml</code> file, or even in whichever format you prefer out of <code>yaml</code>, <code>toml</code>, and <code>json</code>.</p><h3 id=setup-github-pages-in-your-repo-settings>Setup Github Pages in your repo settings</h3><blockquote><p>By default, the GitHub action pushes the generated content to the <code>gh-pages</code> branch. This means GitHub has to serve your <code>gh-pages</code> branch as a GitHub Pages branch. You can change this setting by going to <code>Settings > GitHub Pages</code>, and change the source branch to <code>gh-pages</code>.</p></blockquote><p>Source: <a href=https://gohugo.io/hosting-and-deployment/hosting-on-github/>Hugo - Hosting on Github</a></p><h3 id=custom-domains>Custom Domains</h3><p>If you&rsquo;re bringing your own DNS, be sure to add your domain to <code>/static/CNAME</code>, as a requirement for <code>Github Pages</code>.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh><span style=display:flex><span>echo <span style=color:#e6db74>&#34;hartje.io&#34;</span> &gt; static/CNAME
+</span></span></code></pre></div><p><code>/static/CNAME</code>:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-text data-lang=text><span style=display:flex><span>hartje.io
+</span></span></code></pre></div><h3 id=create-a-post>Create a post</h3><p><code>hugo</code> also has a scaffold for posts. To create a new post run:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh><span style=display:flex><span>hugo new mypost.md
+</span></span><span style=display:flex><span><span style=color:#75715e># or alternatively, you can nest your posts in directories</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># hugo new mydir/mypost.md</span>
+</span></span></code></pre></div><p>The created markdown files will be in the <code>content/</code> folder.</p><h2 id=automatically-publish-changes-to-github-pages>Automatically publish changes to Github Pages</h2><p>We can make quick work of an automated deployment for our site, by adopting this simple github workflow. Add this <code>.github/workflows/gh-pages.yaml</code> and push your branch to set it up.</p><p><code>/.github/workflows/gh-pages.yaml</code>:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#f92672>name</span>: <span style=color:#ae81ff>github pages</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#f92672>on</span>:
+</span></span><span style=display:flex><span>  <span style=color:#f92672>push</span>:
+</span></span><span style=display:flex><span>    <span style=color:#f92672>branches</span>:
+</span></span><span style=display:flex><span>      - <span style=color:#ae81ff>main </span> <span style=color:#75715e># Set a branch to deploy</span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>pull_request</span>:
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#f92672>jobs</span>:
+</span></span><span style=display:flex><span>  <span style=color:#f92672>deploy</span>:
+</span></span><span style=display:flex><span>    <span style=color:#f92672>runs-on</span>: <span style=color:#ae81ff>ubuntu-20.04</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>steps</span>:
+</span></span><span style=display:flex><span>      - <span style=color:#f92672>uses</span>: <span style=color:#ae81ff>actions/checkout@v2</span>
+</span></span><span style=display:flex><span>        <span style=color:#f92672>with</span>:
+</span></span><span style=display:flex><span>          <span style=color:#f92672>submodules</span>: <span style=color:#66d9ef>true</span>  <span style=color:#75715e># Fetch Hugo themes (true OR recursive)</span>
+</span></span><span style=display:flex><span>          <span style=color:#f92672>fetch-depth</span>: <span style=color:#ae81ff>0</span>    <span style=color:#75715e># Fetch all history for .GitInfo and .Lastmod</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>      - <span style=color:#f92672>name</span>: <span style=color:#ae81ff>Setup Hugo</span>
+</span></span><span style=display:flex><span>        <span style=color:#f92672>uses</span>: <span style=color:#ae81ff>peaceiris/actions-hugo@v2</span>
+</span></span><span style=display:flex><span>        <span style=color:#f92672>with</span>:
+</span></span><span style=display:flex><span>          <span style=color:#f92672>hugo-version</span>: <span style=color:#e6db74>&#39;latest&#39;</span>
+</span></span><span style=display:flex><span>          <span style=color:#75715e># extended: true</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>      - <span style=color:#f92672>name</span>: <span style=color:#ae81ff>Build</span>
+</span></span><span style=display:flex><span>        <span style=color:#f92672>run</span>: <span style=color:#ae81ff>hugo --minify</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>      - <span style=color:#f92672>name</span>: <span style=color:#ae81ff>Deploy</span>
+</span></span><span style=display:flex><span>        <span style=color:#f92672>uses</span>: <span style=color:#ae81ff>peaceiris/actions-gh-pages@v3</span>
+</span></span><span style=display:flex><span>        <span style=color:#f92672>if</span>: <span style=color:#ae81ff>github.ref == &#39;refs/heads/main&#39;</span>
+</span></span><span style=display:flex><span>        <span style=color:#f92672>with</span>:
+</span></span><span style=display:flex><span>          <span style=color:#f92672>github_token</span>: <span style=color:#ae81ff>${{ secrets.GITHUB_TOKEN }}</span>
+</span></span><span style=display:flex><span>          <span style=color:#f92672>publish_dir</span>: <span style=color:#ae81ff>./public</span>
+</span></span></code></pre></div><h2 id=customizing-hugo>Customizing Hugo</h2><p>First, here is a wonderful tutorial for <a href=https://www.banjocode.com/post/hugo/custom-css/>adding custom css or javascript to your hugo site</a> from <code>banjocode</code>.</p><p>If you&rsquo;d like to customize your <code>hugo</code> site layout, then first take a look at the structure of our theme:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>tree themes/venture
+</span></span><span style=display:flex><span>themes/venture
+</span></span><span style=display:flex><span>├── LICENSE
+</span></span><span style=display:flex><span>├── README.md
+</span></span><span style=display:flex><span>├── archetypes
+</span></span><span style=display:flex><span>│   └── default.md
+</span></span><span style=display:flex><span>├── assets
+</span></span><span style=display:flex><span>│   └── sass
+</span></span><span style=display:flex><span>│       └── main.sass
+</span></span><span style=display:flex><span>├── images
+</span></span><span style=display:flex><span>│   ├── screenshot.png
+</span></span><span style=display:flex><span>│   └── tn.png
+</span></span><span style=display:flex><span>├── layouts
+</span></span><span style=display:flex><span>│   ├── 404.html
+</span></span><span style=display:flex><span>│   ├── _default
+</span></span><span style=display:flex><span>│   │   ├── baseof.html
+</span></span><span style=display:flex><span>│   │   ├── list.html
+</span></span><span style=display:flex><span>│   │   └── single.html
+</span></span><span style=display:flex><span>│   ├── about
+</span></span><span style=display:flex><span>│   │   └── list.html
+</span></span><span style=display:flex><span>│   ├── index.html
+</span></span><span style=display:flex><span>│   └── partials
+</span></span><span style=display:flex><span>│       ├── footer.html
+</span></span><span style=display:flex><span>│       ├── head.html
+</span></span><span style=display:flex><span>│       └── header.html
+</span></span><span style=display:flex><span>├── static
+</span></span><span style=display:flex><span>│   └── images
+</span></span><span style=display:flex><span>│       └── blank.png
+</span></span><span style=display:flex><span>└── theme.toml
+</span></span></code></pre></div><p>You might recognize that the theme repo&rsquo;s structure matches the one scaffolded by <code>hugo</code>. <code>hugo</code> will prefer a root level file, should the theme have a conflicting file, so we can explore what all we can change and experiment by copying to the root level and modifying it.</p><p>For instance, if we wanted to update the <code>layouts/partials/footer.html</code>, we&rsquo;d want to first copy the theme&rsquo;s into our root level <code>layouts/partials</code>, then modify the file in <code>/layouts/partials/footer.html</code>.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh><span style=display:flex><span>mkdir -p layouts/partials
+</span></span><span style=display:flex><span>cp themes/venture/layouts/partials/footer.html layouts/partials/footer.html
+</span></span></code></pre></div></section><div class=tags></div></article><article><time datetime="2022-02-05 10:19:26 -0600 -0600">Feb 5, 2022</time><h1><a href=https://hartje.io/about/>About</a></h1><section class=body><p><img src="https://avatars.githubusercontent.com/u/4894582?v=4" alt="it me"></p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#f92672>apiVersion</span>: <span style=color:#ae81ff>human/v1</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>kind</span>: <span style=color:#ae81ff>Nerd</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>metadata</span>:
+</span></span><span style=display:flex><span>  <span style=color:#f92672>name</span>: <span style=color:#ae81ff>Ryan Hartje</span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>namespace</span>: <span style=color:#ae81ff>Austin, TX</span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>labels</span>:
+</span></span><span style=display:flex><span>    <span style=color:#f92672>pronouns</span>: <span style=color:#e6db74>&#34;he/him&#34;</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>occupation</span>: <span style=color:#e6db74>&#34;software engineer&#34;</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>hobbies</span>: <span style=color:#e6db74>&#34;running, biking, horsing around&#34;</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>spec</span>:
+</span></span><span style=display:flex><span>  <span style=color:#f92672>social</span>:
+</span></span><span style=display:flex><span>    <span style=color:#f92672>github</span>: <span style=color:#ae81ff>https://github.com/goshlanuage</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>linkedin</span>: <span style=color:#ae81ff>https://www.linkedin.com/in/ryan-hartje/</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>twitter</span>: <span style=color:#ae81ff>https://twitter.com/xoxodeadbeef</span>
+</span></span></code></pre></div></section><div class=tags></div></article><div class=next-and-prev></div></main><hr><footer></footer><br></body></html>
