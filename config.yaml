@@ -1,22 +1,33 @@
 baseURL: 'https://hartje.io/'
 languageCode: en-us
 title: hartje.io
-theme: venture
+
+contentDir: content/en
+gcs_engine_id: "011737558837375720776:fsdu1nryfng"
 
 disqusShortname: hartje-dot-io
 
-#
-menu:
-  main:
-    - name: Posts
-      weight: 200
-      identifier: posts
-      url: /post/
-    - name: About
-      weight: 300
-      identifier: about
-      url: /about/
-
+taxonomies:
+  tag: tags
+  category: categories
 
 params:
-  pfp: images/avatar.jpeg
+  links:
+    user:
+    - name: Linkedin
+      url: https://linkedin.com/in/ryan-hartje/
+      icon: "fab fa-linkedin"
+    - name: Twitter
+      url: https://twitter.com/xoxodeadbeef
+      icon: "fab fa-twitter"
+  ui:
+    footer_about_disable: true
+
+
+# hugo module configuration
+
+module:
+  imports:
+  - path: github.com/google/docsy
+  - path: github.com/google/docsy/dependencies
+  - path: github.com/FortAwesome/Font-Awesome

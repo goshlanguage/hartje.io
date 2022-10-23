@@ -8,3 +8,6 @@
 [submodule "themes/venture"]
 	path = themes/venture
 	url = https://github.com/Wtoll/venture.git
+[submodule "themes/docsy"]
+	path = themes/docsy
+	url = https://github.com/google/docsy

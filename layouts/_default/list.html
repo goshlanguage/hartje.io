@@ -1,7 +1,0 @@
-{{ define "main" }}
-  <ul>
-    {{ range .Pages }}
-      <li class="arrow"><a href="{{ .Permalink }}">{{ .Title }}</a> - <i>{{ .Date.Format "January 2, 2006"}}</i>{{- if .Description }}: {{ .Description }}{{- end }}</li>
-    {{ end }}
-  </ul>
-{{ end }}
