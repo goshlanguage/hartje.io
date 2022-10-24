@@ -1,0 +1,169 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>hartje.io – testing</title><link>https://hartje.io/tags/testing/</link><description>Recent content in testing on hartje.io</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Sat, 22 Oct 2022 09:45:54 -0500</lastBuildDate><atom:link href="https://hartje.io/tags/testing/index.xml" rel="self" type="application/rss+xml"/><item><title>Blog: K6</title><link>https://hartje.io/blog/k6/</link><pubDate>Sat, 22 Oct 2022 09:45:54 -0500</pubDate><guid>https://hartje.io/blog/k6/</guid><description>
+&lt;h2 id="summary">Summary&lt;/h2>
+&lt;p>Over the years, HTTP driven benchmark testing has seen many contenders come and go. Tools in this space include &lt;code>siege&lt;/code>, &lt;code>apache bench&lt;/code>, &lt;code>bees with machine guns&lt;/code>, and many more. These sorts of tests are not only great for load testing, but they also can be used to help find bottlenecks in web application stacks, stress monitoring and observability tools, and can be used for chaos and reliabiity testing.&lt;/p>
+&lt;p>Recently, one contender from a prominent observability company has risen above the rest to become one of the defacto load testing tools. &lt;a href="https://k6.io/">Grafana&amp;rsquo;s K6&lt;/a> is an open source, extensible load testing tool. Find it on &lt;a href="https://github.com/grafana/k6">github&lt;/a> if you&amp;rsquo;d like to browse the source. The tests are driven by javascript scripts and the k6 testing tool.&lt;/p>
+&lt;h2 id="installation">Installation&lt;/h2>
+&lt;p>If you&amp;rsquo;d like to follow along with this article, first install the k6 binary locally, or pull the container. You can find the official installation docs upstream at &lt;a href="https://k6.io/docs/getting-started/installation/">https://k6.io/docs/getting-started/installation/&lt;/a>&lt;/p>
+&lt;p>MacOS: &lt;code>brew install k6&lt;/code>&lt;/p>
+&lt;p>Debian based:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-sh" data-lang="sh">&lt;span style="display:flex;">&lt;span>sudo gpg --no-default-keyring --keyring /usr/share/keyrings/k6-archive-keyring.gpg --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys C5AD17C747E3415A3642D57D77C6C491D6AC1D69
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>echo &lt;span style="color:#e6db74">&amp;#34;deb [signed-by=/usr/share/keyrings/k6-archive-keyring.gpg] https://dl.k6.io/deb stable main&amp;#34;&lt;/span> | sudo tee /etc/apt/sources.list.d/k6.list
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>sudo apt-get update
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>sudo apt-get install k6
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>RHEL based Linux:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-sh" data-lang="sh">&lt;span style="display:flex;">&lt;span>sudo dnf install https://dl.k6.io/rpm/repo.rpm
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>sudo dnf install k6
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Docker:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-sh" data-lang="sh">&lt;span style="display:flex;">&lt;span>docker pull grafana/k6
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="getting-started">Getting started&lt;/h2>
+&lt;p>k6 works by loading javascript source containing an exported default function, then it runs that function. Let&amp;rsquo;s take a look at the given example for a &lt;a href="https://k6.io/docs/examples/single-request/">single request&lt;/a>. I&amp;rsquo;ve saved this locally as &lt;code>main.js&lt;/code> and pointed it to a domain that I own. Using this file now, we can run a basic test by running:&lt;/p>
+&lt;p>&lt;code>k6 run main.js&lt;/code>&lt;/p>
+&lt;p>Here&amp;rsquo;s what it looks like in action:&lt;/p>
+&lt;pre tabindex="0">&lt;code>k6 run main.js
+/\ |‾‾| /‾‾/ /‾‾/
+/\ / \ | |/ / / /
+/ \/ \ | ( / ‾‾\
+/ \ | |\ \ | (‾) |
+/ __________ \ |__| \__\ \_____/ .io
+execution: local
+script: main.js
+output: -
+scenarios: (100.00%) 1 scenario, 20 max VUs, 3m30s max duration (incl. graceful stop):
+* default: Up to 20 looping VUs for 3m0s over 3 stages (gracefulRampDown: 30s, gracefulStop: 30s)
+running (3m00.8s), 00/20 VUs, 2035 complete and 0 interrupted iterations
+default ✓ [======================================] 00/20 VUs 3m0s
+✓ status is 200
+✗ response body
+↳ 0% — ✓ 0 / ✗ 2035
+checks.........................: 50.00% ✓ 2035 ✗ 2035
+data_received..................: 54 MB 300 kB/s
+data_sent......................: 176 kB 971 B/s
+http_req_blocked...............: avg=1.18ms min=0s med=1µs max=413.8ms p(90)=1µs p(95)=1µs
+http_req_connecting............: avg=417.53µs min=0s med=0s max=54.12ms p(90)=0s p(95)=0s
+http_req_duration..............: avg=65.05ms min=40.38ms med=61.58ms max=273.04ms p(90)=81.42ms p(95)=90.97ms
+{ expected_response:true }...: avg=65.05ms min=40.38ms med=61.58ms max=273.04ms p(90)=81.42ms p(95)=90.97ms
+http_req_failed................: 0.00% ✓ 0 ✗ 2035
+http_req_receiving.............: avg=18.69ms min=93µs med=17.74ms max=189.26ms p(90)=30.99ms p(95)=43.45ms
+http_req_sending...............: avg=175.78µs min=49µs med=175µs max=1.34ms p(90)=246µs p(95)=261.29µs
+http_req_tls_handshaking.......: avg=724.1µs min=0s med=0s max=285.94ms p(90)=0s p(95)=0s
+http_req_waiting...............: avg=46.18ms min=32.38ms med=41.85ms max=247.12ms p(90)=55.63ms p(95)=61.45ms
+✗ http_reqs......................: 2035 11.252972/s
+iteration_duration.............: avg=1.06s min=1.04s med=1.06s max=1.5s p(90)=1.08s p(95)=1.09s
+iterations.....................: 2035 11.252972/s
+vus............................: 1 min=1 max=20
+vus_max........................: 20 min=20 max=20
+ERRO[0181] some thresholds have failed
+&lt;/code>&lt;/pre>&lt;p>Let&amp;rsquo;s break down the parts of the &lt;code>single-request&lt;/code> example to see what we can extrapolate from it:&lt;/p>
+&lt;h3 id="metrics">Metrics&lt;/h3>
+&lt;p>&lt;code>k6&lt;/code> comes with a few built in metrics types. In the &lt;code>single-request&lt;/code> example, we can see the &lt;code>Counter&lt;/code> metric in action:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-javascript" data-lang="javascript">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">export&lt;/span> &lt;span style="color:#66d9ef">const&lt;/span> &lt;span style="color:#a6e22e">requests&lt;/span> &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#66d9ef">new&lt;/span> &lt;span style="color:#a6e22e">Counter&lt;/span>(&lt;span style="color:#e6db74">&amp;#39;http_reqs&amp;#39;&lt;/span>);
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>This &lt;code>requests&lt;/code> object is built from the &lt;code>Counter&lt;/code> object comes from the &lt;code>k6&lt;/code> library when we import it (&lt;code>import { Counter } from 'k6/metrics';&lt;/code>). This library also gives us &lt;code>Gauge&lt;/code>, &lt;code>Rate&lt;/code>, and &lt;code>Trend&lt;/code>. See the upstream documentation for this part of the &lt;code>k6&lt;/code> api here:&lt;/p>
+&lt;p>&lt;a href="https://k6.io/docs/javascript-api/#k6-metrics">https://k6.io/docs/javascript-api/#k6-metrics&lt;/a>&lt;/p>
+&lt;h3 id="test-options">Test Options&lt;/h3>
+&lt;p>The next portion of the &lt;code>single-request&lt;/code> example showcases the test options. You can find an extensive guide to these options in the &lt;a href="https://k6.io/docs/using-k6/k6-options/">upstream documentation&lt;/a>. Let&amp;rsquo;s take a look:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-javascript" data-lang="javascript">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">export&lt;/span> &lt;span style="color:#66d9ef">const&lt;/span> &lt;span style="color:#a6e22e">options&lt;/span> &lt;span style="color:#f92672">=&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">stages&lt;/span>&lt;span style="color:#f92672">:&lt;/span> [
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> { &lt;span style="color:#a6e22e">target&lt;/span>&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#ae81ff">20&lt;/span>, &lt;span style="color:#a6e22e">duration&lt;/span>&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#e6db74">&amp;#39;1m&amp;#39;&lt;/span> },
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> { &lt;span style="color:#a6e22e">target&lt;/span>&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#ae81ff">15&lt;/span>, &lt;span style="color:#a6e22e">duration&lt;/span>&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#e6db74">&amp;#39;1m&amp;#39;&lt;/span> },
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> { &lt;span style="color:#a6e22e">target&lt;/span>&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#ae81ff">0&lt;/span>, &lt;span style="color:#a6e22e">duration&lt;/span>&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#e6db74">&amp;#39;1m&amp;#39;&lt;/span> },
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ],
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">thresholds&lt;/span>&lt;span style="color:#f92672">:&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">http_reqs&lt;/span>&lt;span style="color:#f92672">:&lt;/span> [&lt;span style="color:#e6db74">&amp;#39;count &amp;lt; 100&amp;#39;&lt;/span>],
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> },
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>};
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>First, we see an array of stages. A first stage starts with 20 virtual users (referred to as VUs) which runs for 1 minute, followed by a second stage of running 15 virtual users making requests for 1 minute, followed by a cooldown for 1 minute. To learn more about stages, see:&lt;/p>
+&lt;p>&lt;a href="https://k6.io/docs/using-k6/k6-options/reference#stages">https://k6.io/docs/using-k6/k6-options/reference#stages&lt;/a>&lt;/p>
+&lt;p>Next, we see a map of thresholds. Per the upstream documentation:&lt;/p>
+&lt;blockquote>
+&lt;p>Thresholds are the pass/fail criteria that you define for your test metrics. If the performance of the system under test (SUT) does not meet the conditions of your threshold, the test will finish with a failed status.&lt;/p>
+&lt;/blockquote>
+&lt;p>In our &lt;code>single-request&lt;/code> example, we set the &lt;code>http_reqs&lt;/code> threshold, which is to say, we count the total http requests and only pass if its under 100. Kind of an odd threshold, but ok. We see this in the resulting report once the test runs:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-sh" data-lang="sh">&lt;span style="display:flex;">&lt;span> ✓ http_reqs......................: &lt;span style="color:#ae81ff">42&lt;/span> 11.853558/s
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>As we see, since the total count of &lt;code>http_reqs&lt;/code> was less than 100, we pass the test. Ideally, your test probably checks that you were able to make more than &lt;code>x&lt;/code> number of requests instead of less, but I digress.&lt;/p>
+&lt;p>There are a plethora of thresholds available for &lt;code>k6&lt;/code>, so see more at the upstream documentation for thresholds here:&lt;/p>
+&lt;p>&lt;a href="https://k6.io/docs/using-k6/thresholds/">https://k6.io/docs/using-k6/thresholds/&lt;/a>&lt;/p>
+&lt;h3 id="the-business">The business&lt;/h3>
+&lt;p>Finally, let&amp;rsquo;s analyze the function that defines the behavior of our test:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-javascript" data-lang="javascript">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">export&lt;/span> &lt;span style="color:#66d9ef">default&lt;/span> &lt;span style="color:#66d9ef">function&lt;/span> () {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e">// our HTTP request, note that we are saving the response to res, which can be accessed later
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">const&lt;/span> &lt;span style="color:#a6e22e">res&lt;/span> &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#a6e22e">http&lt;/span>.&lt;span style="color:#a6e22e">get&lt;/span>(&lt;span style="color:#e6db74">&amp;#39;http://test.k6.io&amp;#39;&lt;/span>);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">sleep&lt;/span>(&lt;span style="color:#ae81ff">1&lt;/span>);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">const&lt;/span> &lt;span style="color:#a6e22e">checkRes&lt;/span> &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#a6e22e">check&lt;/span>(&lt;span style="color:#a6e22e">res&lt;/span>, {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#e6db74">&amp;#39;status is 200&amp;#39;&lt;/span>&lt;span style="color:#f92672">:&lt;/span> (&lt;span style="color:#a6e22e">r&lt;/span>) =&amp;gt; &lt;span style="color:#a6e22e">r&lt;/span>.&lt;span style="color:#a6e22e">status&lt;/span> &lt;span style="color:#f92672">===&lt;/span> &lt;span style="color:#ae81ff">200&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#e6db74">&amp;#39;response body&amp;#39;&lt;/span>&lt;span style="color:#f92672">:&lt;/span> (&lt;span style="color:#a6e22e">r&lt;/span>) =&amp;gt; &lt;span style="color:#a6e22e">r&lt;/span>.&lt;span style="color:#a6e22e">body&lt;/span>.&lt;span style="color:#a6e22e">indexOf&lt;/span>(&lt;span style="color:#e6db74">&amp;#39;Feel free to browse&amp;#39;&lt;/span>) &lt;span style="color:#f92672">!==&lt;/span> &lt;span style="color:#f92672">-&lt;/span>&lt;span style="color:#ae81ff">1&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> });
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>This test makes it&amp;rsquo;s request to &lt;code>test.k6.io&lt;/code>, then sleeps for 1 second, then checks the status and response body of the request. If the response code is 200, and the body contains the string &lt;code>Feel free to browse&lt;/code>, then we have a successful request!&lt;/p>
+&lt;h2 id="review">Review&lt;/h2>
+&lt;p>So now that we hopefully understand the test breakdown, we should be able to shape this test into something meaningful for testing a single endpoint&amp;rsquo;s throughput. In the following example, we test that running 10 VUs for 1 minute with a 200ms sleep time should produce &lt;code>10 * (60/.002) = 3000 total requests&lt;/code>. In my case, I&amp;rsquo;m testing this blog, so these configurations are spefic to my usecase.&lt;/p>
+&lt;p>Here&amp;rsquo;s my test:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-javascript" data-lang="javascript">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">import&lt;/span> &lt;span style="color:#a6e22e">http&lt;/span> &lt;span style="color:#a6e22e">from&lt;/span> &lt;span style="color:#e6db74">&amp;#39;k6/http&amp;#39;&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">import&lt;/span> { &lt;span style="color:#a6e22e">sleep&lt;/span>, &lt;span style="color:#a6e22e">check&lt;/span> } &lt;span style="color:#a6e22e">from&lt;/span> &lt;span style="color:#e6db74">&amp;#39;k6&amp;#39;&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">import&lt;/span> { &lt;span style="color:#a6e22e">Counter&lt;/span> } &lt;span style="color:#a6e22e">from&lt;/span> &lt;span style="color:#e6db74">&amp;#39;k6/metrics&amp;#39;&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">export&lt;/span> &lt;span style="color:#66d9ef">const&lt;/span> &lt;span style="color:#a6e22e">requests&lt;/span> &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#66d9ef">new&lt;/span> &lt;span style="color:#a6e22e">Counter&lt;/span>(&lt;span style="color:#e6db74">&amp;#39;http_reqs&amp;#39;&lt;/span>);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">export&lt;/span> &lt;span style="color:#66d9ef">const&lt;/span> &lt;span style="color:#a6e22e">options&lt;/span> &lt;span style="color:#f92672">=&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">stages&lt;/span>&lt;span style="color:#f92672">:&lt;/span> [
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> { &lt;span style="color:#a6e22e">target&lt;/span>&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#ae81ff">10&lt;/span>, &lt;span style="color:#a6e22e">duration&lt;/span>&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#e6db74">&amp;#39;1m&amp;#39;&lt;/span> },
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ],
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">thresholds&lt;/span>&lt;span style="color:#f92672">:&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">http_reqs&lt;/span>&lt;span style="color:#f92672">:&lt;/span> [&lt;span style="color:#e6db74">&amp;#39;count &amp;gt;= 3000&amp;#39;&lt;/span>],
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">http_req_duration&lt;/span>&lt;span style="color:#f92672">:&lt;/span> [&lt;span style="color:#e6db74">&amp;#39;p(95) &amp;lt; 200&amp;#39;&lt;/span>], &lt;span style="color:#75715e">// 95% of requests should be below 200ms
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span> },
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>};
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">export&lt;/span> &lt;span style="color:#66d9ef">default&lt;/span> &lt;span style="color:#66d9ef">function&lt;/span> () {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">const&lt;/span> &lt;span style="color:#a6e22e">res&lt;/span> &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#a6e22e">http&lt;/span>.&lt;span style="color:#a6e22e">get&lt;/span>(&lt;span style="color:#e6db74">&amp;#39;https://hartje.io&amp;#39;&lt;/span>);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">sleep&lt;/span>(.&lt;span style="color:#ae81ff">001&lt;/span>);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">const&lt;/span> &lt;span style="color:#a6e22e">checkRes&lt;/span> &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#a6e22e">check&lt;/span>(&lt;span style="color:#a6e22e">res&lt;/span>, {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#e6db74">&amp;#39;status is 200&amp;#39;&lt;/span>&lt;span style="color:#f92672">:&lt;/span> (&lt;span style="color:#a6e22e">r&lt;/span>) =&amp;gt; &lt;span style="color:#a6e22e">r&lt;/span>.&lt;span style="color:#a6e22e">status&lt;/span> &lt;span style="color:#f92672">===&lt;/span> &lt;span style="color:#ae81ff">200&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#e6db74">&amp;#39;response body&amp;#39;&lt;/span>&lt;span style="color:#f92672">:&lt;/span> (&lt;span style="color:#a6e22e">r&lt;/span>) =&amp;gt; &lt;span style="color:#a6e22e">r&lt;/span>.&lt;span style="color:#a6e22e">body&lt;/span>.&lt;span style="color:#a6e22e">indexOf&lt;/span>(&lt;span style="color:#e6db74">&amp;#39;posts&amp;#39;&lt;/span>) &lt;span style="color:#f92672">!==&lt;/span> &lt;span style="color:#f92672">-&lt;/span>&lt;span style="color:#ae81ff">1&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> });
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>And here are my results:&lt;/p>
+&lt;pre tabindex="0">&lt;code class="language-ssh" data-lang="ssh">k6 run main.js
+/\ |‾‾| /‾‾/ /‾‾/
+/\ / \ | |/ / / /
+/ \/ \ | ( / ‾‾\
+/ \ | |\ \ | (‾) |
+/ __________ \ |__| \__\ \_____/ .io
+execution: local
+script: main.js
+output: -
+scenarios: (100.00%) 1 scenario, 10 max VUs, 1m30s max duration (incl. graceful stop):
+* default: Up to 10 looping VUs for 1m0s over 1 stages (gracefulRampDown: 30s, gracefulStop: 30s)
+running (1m00.1s), 00/10 VUs, 6281 complete and 0 interrupted iterations
+default ✓ [======================================] 00/10 VUs 1m0s
+✓ status is 200
+✓ response body
+checks.........................: 100.00% ✓ 12562 ✗ 0
+data_received..................: 167 MB 2.8 MB/s
+data_sent......................: 512 kB 8.5 kB/s
+http_req_blocked...............: avg=130.89µs min=0s med=1µs max=104.85ms p(90)=1µs p(95)=1µs
+http_req_connecting............: avg=54.19µs min=0s med=0s max=43ms p(90)=0s p(95)=0s
+✓ http_req_duration..............: avg=46.16ms min=39.37ms med=44.73ms max=217.27ms p(90)=50.39ms p(95)=53.76ms
+{ expected_response:true }...: avg=46.16ms min=39.37ms med=44.73ms max=217.27ms p(90)=50.39ms p(95)=53.76ms
+http_req_failed................: 0.00% ✓ 0 ✗ 6281
+http_req_receiving.............: avg=6.62ms min=84µs med=6.87ms max=174.64ms p(90)=9.4ms p(95)=10.36ms
+http_req_sending...............: avg=88.94µs min=30µs med=73µs max=3.41ms p(90)=145µs p(95)=189µs
+http_req_tls_handshaking.......: avg=75.55µs min=0s med=0s max=64.57ms p(90)=0s p(95)=0s
+http_req_waiting...............: avg=39.45ms min=32.39ms med=38.2ms max=208.97ms p(90)=44.67ms p(95)=47.86ms
+✓ http_reqs......................: 6281 104.587542/s
+iteration_duration.............: avg=47.79ms min=40.77ms med=46.24ms max=218.61ms p(90)=51.95ms p(95)=55.47ms
+iterations.....................: 6281 104.587542/s
+vus............................: 9 min=1 max=9
+vus_max........................: 10 min=10 max=10
+&lt;/code>&lt;/pre>&lt;h2 id="thoughts-on-implementation">Thoughts on implementation&lt;/h2>
+&lt;p>These days with the proliferation of CNCF tooling, higher throughputs for testing can be easily achieved by spreading these client tests across several gigabit internet connections by leveraging something like &lt;a href="https://www.digitalocean.com/products/kubernetes">DigitalOcean&amp;rsquo;s Managed Kubernetes&lt;/a> offering.&lt;/p>
+&lt;p>For this reason, it can be no surprise that &lt;code>k6&lt;/code> has already considered this and has created a test operator that makes this easy. You can learn more at:&lt;/p>
+&lt;p>&lt;a href="https://k6.io/blog/running-distributed-tests-on-k8s/">https://k6.io/blog/running-distributed-tests-on-k8s/&lt;/a>&lt;/p>
+&lt;p>By creating a configmap and CRD for the test, its easy to deploy your test cases to kubernetes and run at cloud scale and speed.&lt;/p>
+&lt;h1 id="thats-all-folks">That&amp;rsquo;s all folks&lt;/h1>
+&lt;p>I hope you&amp;rsquo;ve enjoyed this short sumary of &lt;code>k6&lt;/code>. Good luck in your own testing adventures, and if you have any questions, drop them in the &lt;code>disqus&lt;/code> forum below!&lt;/p></description></item></channel></rss>
