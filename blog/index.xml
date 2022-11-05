@@ -233,7 +233,92 @@ vus_max........................: 10 min=10 max=10
 &lt;p>&lt;a href="https://k6.io/blog/running-distributed-tests-on-k8s/">https://k6.io/blog/running-distributed-tests-on-k8s/&lt;/a>&lt;/p>
 &lt;p>By creating a configmap and CRD for the test, its easy to deploy your test cases to kubernetes and run at cloud scale and speed.&lt;/p>
 &lt;h1 id="thats-all-folks">That&amp;rsquo;s all folks&lt;/h1>
-&lt;p>I hope you&amp;rsquo;ve enjoyed this short sumary of &lt;code>k6&lt;/code>. Good luck in your own testing adventures, and if you have any questions, drop them in the &lt;code>disqus&lt;/code> forum below!&lt;/p></description></item><item><title>Blog: Sockets</title><link>https://hartje.io/blog/unix_sockets/</link><pubDate>Fri, 04 Mar 2022 10:44:43 -0600</pubDate><guid>https://hartje.io/blog/unix_sockets/</guid><description>
+&lt;p>I hope you&amp;rsquo;ve enjoyed this short sumary of &lt;code>k6&lt;/code>. Good luck in your own testing adventures, and if you have any questions, drop them in the &lt;code>disqus&lt;/code> forum below!&lt;/p></description></item><item><title>Blog: Homelab</title><link>https://hartje.io/blog/homelab/</link><pubDate>Wed, 27 Apr 2022 23:07:28 -0500</pubDate><guid>https://hartje.io/blog/homelab/</guid><description>
+&lt;h2 id="zero-net-emissions-mini-datacenter-lab">Zero Net Emissions Mini Datacenter Lab&lt;/h2>
+&lt;p>This is my zero net emissions homelab&lt;/p>
+&lt;p>22U Rack Enclosure Design:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">[&lt;/span> 1U TOR switch w/ PoE &lt;span style="color:#f92672">]&lt;/span> 300W @ 110V
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">[&lt;/span> 2U 14X Raspi Cluster &lt;span style="color:#f92672">]&lt;/span> &lt;span style="color:#ae81ff">14&lt;/span> X 8GB : 112GB Ram
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">[&lt;/span>______________________&lt;span style="color:#f92672">]&lt;/span> &lt;span style="color:#ae81ff">14&lt;/span> X 4Core : &lt;span style="color:#ae81ff">56&lt;/span> Cores
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">[&lt;/span> 2U 14X Raspi Cluster &lt;span style="color:#f92672">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">[&lt;/span>______________________&lt;span style="color:#f92672">]&lt;/span> 210W @ 110V
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">[&lt;/span> 2U 14X Raspi Cluster &lt;span style="color:#f92672">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">[&lt;/span>______________________&lt;span style="color:#f92672">]&lt;/span> 500GB X 14 &lt;span style="color:#f92672">=&lt;/span> 7TB
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">[&lt;/span> 2U 14X Raspi Cluster &lt;span style="color:#f92672">]&lt;/span> 1TB X 14 &lt;span style="color:#f92672">=&lt;/span> 14TB
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">[&lt;/span>______________________&lt;span style="color:#f92672">]&lt;/span> 2TB X 14 &lt;span style="color:#f92672">=&lt;/span> 28TB
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">[&lt;/span> 2U 14X Raspi Cluster &lt;span style="color:#f92672">]&lt;/span> 4TB X 14 &lt;span style="color:#f92672">=&lt;/span> 56TB
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">[&lt;/span>______________________&lt;span style="color:#f92672">]&lt;/span> 8TB X 14 &lt;span style="color:#f92672">=&lt;/span> 112TB
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">[&lt;/span> 2U 14X Raspi Cluster &lt;span style="color:#f92672">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">[&lt;/span>______________________&lt;span style="color:#f92672">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">[&lt;/span> 2U 14X Rock64Pro &lt;span style="color:#f92672">]&lt;/span> &lt;span style="color:#ae81ff">14&lt;/span> X 4GB : 56GB
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">[&lt;/span>______________________&lt;span style="color:#f92672">]&lt;/span> &lt;span style="color:#ae81ff">14&lt;/span> X 6Core : &lt;span style="color:#ae81ff">84&lt;/span> Cores
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">[&lt;/span> 2U 14X Rock64Pro &lt;span style="color:#f92672">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">[&lt;/span>______________________&lt;span style="color:#f92672">]&lt;/span> Only PoE Splitters available - A cabling nightmare at scale
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">[&lt;/span> EMPTY &lt;span style="color:#f92672">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">[&lt;/span> EMPTY &lt;span style="color:#f92672">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">[&lt;/span>______________________&lt;span style="color:#f92672">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">[&lt;/span> EMPTY &lt;span style="color:#f92672">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">[&lt;/span> EMPTY &lt;span style="color:#f92672">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">[&lt;/span>______________________&lt;span style="color:#f92672">]&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="current-homelab">Current Homelab&lt;/h2>
+&lt;pre tabindex="0">&lt;code>[ 1U TOR switch w/ PoE ] 300W @ 110V
+[ 2U 6X Raspi 4B ] 3 X 8GB : 24GB Ram | 3 X 4Core : 12 Cores
+[______3X_Rockpro64____]
+[ ] Pi consumption:
+[______________________] 9.4W X 3: 30W
+[ ] Rockpro64 consumption:
+[______________________] 15W X 3: 45W
+[ ]
+[______________________] Total:
+[ ] 375W /hr worst case
+[______________________] 9kWh/day worst case
+[ ]
+[______________________] 100W /hr swag
+[ ] 2.4kWh/day swag
+[______________________]
+[ ]
+[______________________]
+&lt;/code>&lt;/pre>&lt;p>The homelab also has a battery rack&lt;/p>
+&lt;pre tabindex="0">&lt;code>[______________________]
+[ EMPTY ]
+[ EMPTY ]
+[______________________]
+[ EMPTY ]
+[ EMPTY ]
+[______________________]
+[ 3U EG4 48V 100Ah Bat ] - https://signaturesolar.com/eg4-lifepower4-lithium-battery-48v-100ah/
+[ ] 48V x 100Ah = 4800Wh or 4.8kWh (5120Wh / 5.12 kWh)
+[______________________] Has BMS
+[ 3U EG4 48V 100Ah Bat ] - https://signaturesolar.com/eg4-lifepower4-lithium-battery-48v-100ah/
+[ ] 48V x 100Ah = 4800Wh or 4.8kWh (5120Wh / 5.12 kWh)
+[______________________] Has BMS
+[ 3U EG4 48V 100Ah Bat ] - https://signaturesolar.com/eg4-lifepower4-lithium-battery-48v-100ah/
+[ ] 48V x 100Ah = 4800Wh or 4.8kWh (5120Wh / 5.12 kWh)
+[______________________] Has BMS
+[ 3U EG4 48V 100Ah Bat ] - https://signaturesolar.com/eg4-lifepower4-lithium-battery-48v-100ah/
+[ ] 48V x 100Ah = 4800Wh or 4.8kWh (5120Wh / 5.12 kWh)
+[______________________] Has BMS
++ -
+&lt;/code>&lt;/pre>&lt;h2 id="solar-integration">Solar Integration&lt;/h2>
+&lt;p>If the 300W switch were to run for a few rainy days, we&amp;rsquo;d need potentially 300W X 72hours for up to 21.6kWh&lt;/p>
+&lt;p>ARM64 or RISCV?
+&lt;a href="https://riscv.org/wp-content/uploads/2018/07/Shanghai-1325_GreenWaves_Shanghai-2018-MC-V2.pdf">https://riscv.org/wp-content/uploads/2018/07/Shanghai-1325_GreenWaves_Shanghai-2018-MC-V2.pdf&lt;/a>&lt;/p>
+&lt;p>PoE Hat consumption: 5V @ 2.5A (15W)
+Cluster wide: 70V @ 2.5A (210W)&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-c" data-lang="c">&lt;span style="display:flex;">&lt;span> [ INVERTER ]
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">/------------------|&lt;/span> &lt;span style="color:#f92672">/------------------|&lt;/span> [ ]
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">/&lt;/span> &lt;span style="color:#f92672">/&lt;/span> &lt;span style="color:#f92672">/&lt;/span> &lt;span style="color:#f92672">/&lt;/span> &lt;span style="color:#f92672">/&lt;/span> &lt;span style="color:#f92672">/|&lt;/span> &lt;span style="color:#f92672">/&lt;/span> &lt;span style="color:#f92672">/&lt;/span> &lt;span style="color:#f92672">/&lt;/span> &lt;span style="color:#f92672">/&lt;/span> &lt;span style="color:#f92672">/&lt;/span> &lt;span style="color:#f92672">/|&lt;/span> [ ]
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">/&lt;/span>__&lt;span style="color:#f92672">/&lt;/span>___&lt;span style="color:#f92672">/&lt;/span>___&lt;span style="color:#f92672">/&lt;/span>___&lt;span style="color:#f92672">/&lt;/span>___&lt;span style="color:#f92672">/&lt;/span> &lt;span style="color:#f92672">|&lt;/span> &lt;span style="color:#f92672">/&lt;/span>__&lt;span style="color:#f92672">/&lt;/span>___&lt;span style="color:#f92672">/&lt;/span>___&lt;span style="color:#f92672">/&lt;/span>___&lt;span style="color:#f92672">/&lt;/span>___&lt;span style="color:#f92672">/&lt;/span> &lt;span style="color:#f92672">|&lt;/span> [ ]
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">/&lt;/span> &lt;span style="color:#f92672">/&lt;/span> &lt;span style="color:#f92672">/&lt;/span> &lt;span style="color:#f92672">/&lt;/span> &lt;span style="color:#f92672">/&lt;/span> &lt;span style="color:#f92672">/&lt;/span> &lt;span style="color:#f92672">|&lt;/span> &lt;span style="color:#f92672">/&lt;/span> &lt;span style="color:#f92672">/&lt;/span> &lt;span style="color:#f92672">/&lt;/span> &lt;span style="color:#f92672">/&lt;/span> &lt;span style="color:#f92672">/&lt;/span> &lt;span style="color:#f92672">/&lt;/span> &lt;span style="color:#f92672">|&lt;/span> &lt;span style="color:#f92672">|&lt;/span> &lt;span style="color:#f92672">|&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">/&lt;/span> &lt;span style="color:#f92672">/&lt;/span> &lt;span style="color:#f92672">/&lt;/span> &lt;span style="color:#f92672">/&lt;/span> &lt;span style="color:#f92672">/&lt;/span> &lt;span style="color:#f92672">/&lt;/span> &lt;span style="color:#f92672">|&lt;/span> &lt;span style="color:#f92672">/&lt;/span> &lt;span style="color:#f92672">/&lt;/span> &lt;span style="color:#f92672">/&lt;/span> &lt;span style="color:#f92672">/&lt;/span> &lt;span style="color:#f92672">/&lt;/span> &lt;span style="color:#f92672">/&lt;/span> &lt;span style="color:#f92672">|&lt;/span> &lt;span style="color:#f92672">+&lt;/span> &lt;span style="color:#f92672">-&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">/&lt;/span>__&lt;span style="color:#f92672">/&lt;/span>___&lt;span style="color:#f92672">/&lt;/span>___&lt;span style="color:#f92672">/&lt;/span>___&lt;span style="color:#f92672">/&lt;/span>___&lt;span style="color:#f92672">/&lt;/span>____&lt;span style="color:#f92672">|&lt;/span>_________&lt;span style="color:#f92672">/&lt;/span>__&lt;span style="color:#f92672">/&lt;/span>___&lt;span style="color:#f92672">/&lt;/span>___&lt;span style="color:#f92672">/&lt;/span>___&lt;span style="color:#f92672">/&lt;/span>___&lt;span style="color:#f92672">/&lt;/span>____&lt;span style="color:#f92672">|&lt;/span>______________[ ]
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>4 X 450W Renology in Series to hit &amp;gt; 60V (12V X 4)&lt;/p>
+&lt;p>&lt;a href="https://www.homedepot.com/p/Renogy-450-Watt-Monocrystalline-Solar-Panel-2-Pieces-RSP450D-120x2-US/320645971">https://www.homedepot.com/p/Renogy-450-Watt-Monocrystalline-Solar-Panel-2-Pieces-RSP450D-120x2-US/320645971&lt;/a>&lt;/p>
+&lt;h2 id="reference">Reference&lt;/h2>
+&lt;p>Metrics &lt;a href="https://github.com/SunVibeCity/metrics">https://github.com/SunVibeCity/metrics&lt;/a>&lt;/p>
+&lt;p>&lt;a href="https://www.youtube.com/watch?v=adFGmOlDM-Y">https://www.youtube.com/watch?v=adFGmOlDM-Y&lt;/a>&lt;/p>
+&lt;p>&lt;a href="https://github.com/mkaczanowski/packer-builder-arm">https://github.com/mkaczanowski/packer-builder-arm&lt;/a>&lt;/p></description></item><item><title>Blog: Sockets</title><link>https://hartje.io/blog/unix_sockets/</link><pubDate>Fri, 04 Mar 2022 10:44:43 -0600</pubDate><guid>https://hartje.io/blog/unix_sockets/</guid><description>
 &lt;h2 id="summary">Summary&lt;/h2>
 &lt;p>If you&amp;rsquo;ve ever used &lt;code>netstat&lt;/code>, or gone to a website on OSX or Linux (or Windows for that matter) without a background in C (or perhaps systems programming), you may have struggled to fully appreciate the content there in. Or maybe you are just curious to know how &lt;code>sockets&lt;/code> work in *nix.&lt;/p>
 &lt;p>&lt;code>sockets&lt;/code> are a form of &lt;code>IPC&lt;/code>, or inter process communication, allowing processes to bidirectionally share information with other processes. See other kinds of IPC in &lt;a href="https://beej.us/guide/bgipc/html/multi/index.html">Beej&amp;rsquo;s Guide to Unix IPC&lt;/a>.&lt;/p>
