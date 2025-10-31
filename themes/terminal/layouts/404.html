@@ -1,0 +1,31 @@
+{{ define "main" }}
+  <div class="post">
+    <h1 class="post-title">404 {{ $.Site.Params.missingContentMessage | default "ENOENT" }}</h1>
+
+    <div class="post-content">
+      <pre>
+read(10&lt;/home/ryan/404&gt;, "#!/bin/sh\n\necho '404'\nPageNotFound"..., 8192) = 54
+write(1&lt;/var/log/nginx/error.log&gt;, "404\n", 6) = 6
+stat("/home/ryan/bin/404", 0x7ffc61f2a380) = -1 ENOENT (No such file or directory)
+stat("/home/ryan/go/bin/404", 0x7ffc61f2a380) = -1 ENOENT (No such file or directory)
+stat("/home/ryan/.local/bin/404", 0x7ffc61f2a380) = -1 ENOENT (No such file or directory)
+stat("/usr/local/sbin/404", 0x7ffc61f2a380) = -1 ENOENT (No such file or directory)
+stat("/usr/local/bin/404", 0x7ffc61f2a380) = -1 ENOENT (No such file or directory)
+stat("/usr/sbin/404", 0x7ffc61f2a380) = -1 ENOENT (No such file or directory)
+stat("/usr/bin/404", 0x7ffc61f2a380) = -1 ENOENT (No such file or directory)
+stat("/sbin/404", 0x7ffc61f2a380) = -1 ENOENT (No such file or directory)
+stat("/bin/404", 0x7ffc61f2a380) = -1 ENOENT (No such file or directory)
+stat("/snap/bin/404", 0x7ffc61f2a380) = -1 ENOENT (No such file or directory)
+write(2&lt;/var/log/nginx/error.log&gt;, "./404: 4: ", 14) = 14
+write(2&lt;/var/log/nginx/error.log&gt;, "/404: not found", 21) = 21
+write(2&lt;/var/log/nginx/error.log&gt;, "\n", 1) = 1
+read(10&lt;/home/ryan/404&gt;, "", 8192) = 0
+exit_group(127)                         = ?
++++ exited with 127 +++
+      </pre>
+      <a href="{{ "/" | absURL }}">{{ $.Site.Params.missingBackButtonLabel | default "Back to home page" }}&nbsp;→</a>
+      </p>
+    </div>
+
+  </div>
+{{ end }}

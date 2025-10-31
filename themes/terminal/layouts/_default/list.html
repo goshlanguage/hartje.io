@@ -1,0 +1,16 @@
+{{ define "main" }}
+
+<div class="col-xl-8">
+  <p class="terminal">
+      ryan@hartje.io:~# ls -l blog<br />
+      {{ range .Paginator.Pages }}
+      -rw-r--r--  1 ryan  staff   96 {{ .Date | time.Format ":date_medium" }} <a href="{{ .Permalink }}" target="_new">{{ .Title | markdownify }}</a> <br />
+      {{ end }}
+  </p>
+
+  <p class="terminal">
+      ryan@hartje.io:~#<span class="cursor">&nbsp;
+  </p>
+</div>
+          
+{{ end }}

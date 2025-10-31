@@ -1,0 +1,26 @@
+{{ define "main" }}
+
+    {{ if .Content }}
+        {{ .Content }}
+    {{ end }}
+
+    <div class="col-xl-4">
+        <p class="terminal">
+            ryan@hartje.io:~# ls -l <br />
+            -rw-r--r--  1 ryan  staff   96 Dec  &nbsp;6  2024 <a href="/blog" target="_new">blog/</a> <br />
+            -rw-r--r--  1 ryan  staff   96 Jun  30  2013 <a href="https://github.com/goshlanguage"target="_new">github/</a> <br />
+        </p>
+        
+        <p class="terminal">
+            ryan@hartje.io:~# ls -l blog<br />
+            {{ range .Paginator.Pages }}
+            -rw-r--r--  1 ryan  staff   96 {{ .Date | time.Format ":date_medium" }} <a href="{{ .Permalink }}" target="_new">{{ .Title | markdownify }}</a> <br />
+            {{ end }}
+        </p>
+
+        <p class="terminal">
+            ryan@hartje.io:~#<span class="cursor">&nbsp;
+        </p>
+    </div>
+
+{{ end }}

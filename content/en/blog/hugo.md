@@ -5,6 +5,7 @@ Description: "How to setup and manage hugo on github pages"
 Tags: []
 Categories: []
 DisableComments: false
+draft: false
 ---
 
 This site is powered by `hugo`. I love the simplicity of writing markdown, pushing it to [this repo](https://github.com/goshlanguage/hartje.io/), and having that transpiled into HTML through a github action. There are a lot of tools in this space, such as the popular `Sphinx`, `Mkdocs`, and `Jekyll`.

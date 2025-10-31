@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="{{ or .Site.LanguageCode .Site.Language.Lang }}">
+  <head>
+      <meta charset="utf-8">
+      <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+          {{ partial "head-css.html" . }}
+      <title>{{ .Title }}</title>
+  </head>
+  <body>
+
+    <div class="container-fluid">
+      <!-- Three columns of text below the carousel -->
+      <div class="row">
+        <div id="terminal">
+            <div class="toolbar">
+            <a href="/"><img src="/images/terminalIcon.png" alt="terminal window" width="20" height="20"></a>
+            <span id="titleWindow">
+                <center>
+                  ryan@hartje.io
+                </center>
+            </span>
+            <ul>
+                <li>
+                <i class="icon-remove-sign" id="closeTerminal"></i>
+                </li>
+                <li>
+                <i class="icon-minus-sign minimizeTerminal"></i>
+                </li>
+            </ul>
+            </div><!-- end of toolbar -->
+
+            <div class="terminalWindow">
+              <div class="row">
+
+              {{ block "main" . }}
+              {{ end }}
+
+            </div> <!-- end of row-->
+                
+          </div><!-- end of Terminal Window -->
+        </div>
+      </div> <!-- end of row -->
+    </div><!-- end of container-fluid -->
+  </body>
+</html>

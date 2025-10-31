@@ -10,7 +10,6 @@ What makes good documentation?
 - tells the story of why
 - concise
 - clear
-- disambiguated
 
 Documentation may also have higher value when:
 
